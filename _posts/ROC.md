@@ -1,21 +1,27 @@
-How to evaluate a Classifier using ROC curves
+---
+layout: post
+title: ROC
+markdown: true
+---
+{% include math.html %}
+# How to evaluate a Classifier using ROC curves
 
 For classification tasks, Receiver Operating Characteristic (ROC) curve and Area Under Curve (AUC) are important concepts to know. At times, I have seen people unclear about these concepts and hence my effort to explain these.
 
-Why is this important?
+## Why is this important?
 
 Imagine a dataset repesenting 2 classes but highly skewed, say 90%-10% for positive-negative labels. On such dataset, even a random classifier could be 90% accurate.
+- How do we evaluate or rank various classifiers performance on such dataset?
 
-How do we evaluate or rank various classifiers performance on such dataset?
 Now imagine a multi-class dataset with 100 classes, and there are few classes which makeup up <1% in this set.
-
-How do we know which of these rare classes are being mis-predicted?
+- How do we know which of these rare classes are being mis-predicted?
 There may be classifiers which probably have lower accuracy than others but may do a good job in correctly classifying such hard examples.
-Would you prefer those?
-How would you trade-off accuracy VS correct-prediction of some of these rare classes.
+- Would you prefer those?
+- How would you trade-off accuracy VS correct-prediction of some of these rare classes.
+
 Answering these questions require some interpretation of how well a classifier has separated different classes.
 
-Receiver Operating Characteristic basics.
+## Receiver Operating Characteristic basics.
 
 (For purpose of illustrations, I will mainly assume that classifier learns a gaussian distribution for classes, although following analysis can be extended to any distribution)
 
@@ -23,3 +29,5 @@ Wikipedia describes ROC as: “In statistics, a receiver operating characteristi
 
 Discrimination threshold is also sometimes called the Decision Boundary, the meaning of which is as follows.
 Consider 2 Gaussian Distributions learned by our classifier
+$$ Gaussian PDF = 1/sqrt(2*\pi*std^2) * e^(-1/2 * ((x-mean)/std)^2) $$
+
