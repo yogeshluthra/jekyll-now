@@ -21,13 +21,13 @@ footer-links:
   email:
   facebook:
   flickr:
-  github: https://github.com/yogeshluthra
+  github: "yogeshluthra"
   instagram:
-  linkedin: https://www.linkedin.com/in/yogesh-luthra/
+  linkedin: "in/yogesh-luthra"
   pinterest:
   rss: # just type anything here for a working RSS icon
   twitter: yogeshluthra
-  stackoverflow: https://stackoverflow.com/users/5893232/yogesh-luthra # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+  stackoverflow: "users/5893232/yogesh-luthra" # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
 
