@@ -31,7 +31,7 @@ I have seen people using:
 - [Cumulative Moving Average (CMA)](https://en.wikipedia.org/wiki/Moving_average#Cumulative_moving_average)
   - Unlike EMA, this method uses each sample.  
   - Finding CMA Mean is pretty straight forward.
-    $$\mu_{t} = \frac{(t-1)*mu_{t-1} + x_{t}}{t}$$
+    $$\mu_{t} = \frac{(t-1)*\mu_{t-1} + x_{t}}{t}$$
   - However CMA Variance is tricky. I derive a simple method below and show how accurate it is compared to EMA Variance.  
 $$
 \sigma_{t-1}^2 = \frac{\sum_{i=1}^{t-1} (x_{i}-\mu_{t-1})^2}{t-2}\\
@@ -49,7 +49,7 @@ $$
   - Cons:
     - Is slower to calculate (could be made faster if implemented in a back-end library, based on C for example)
 
-Following figures show comparison of Exponential and Moving Statistics of sampling done on Normal Distribution with Mean=0.0 and Variance=1.0  
+Following figures show comparison of Exponential and Cumulative Statistics of sampling done on Normal Distribution with Mean=0.0 and Variance=1.0  
 In each sampling event, 30 samples (=mini-batch size) were taken.  
 Then EMA statistics were calculate on whole mini-batch, while for CMA calculation was done on single samples as if they were fed sequentially.  
 $$\alpha=0.9$$ was used for EMA.  
