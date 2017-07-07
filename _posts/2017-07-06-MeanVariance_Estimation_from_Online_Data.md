@@ -18,7 +18,7 @@ I have seen people using:
   - This method uses a full mini-batch at once to compute mini-batch (or sample) statistics.  
   - Following are EMA Mean and Variance  
     $$\mu_{t} = \alpha*\mu_{t-N} + (1-\alpha)*sample\ mean_{t,t+N}$$  
-    $$\sigma_{t} = \alpha*\sigma_{t-N} + (1-\alpha)*sample\ variance_{t,t+N}$$  
+    $$\sigma_{t}^2 = \alpha*\sigma_{t-N}^2 + (1-\alpha)*sample\ variance_{t,t+N}$$  
   where:  
      $$\alpha \in [0,1)$$
     - sample mean and variances are calculated from mini-batch of data containing N samples.
