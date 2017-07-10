@@ -8,11 +8,11 @@ markdown: true
 It was a great learning experience implementing:
 - Fully connected Networks
 - Convolutional Neural Networks
-- [Batch Normalization](https://arxiv.org/pdf/1502.03167.pdf) was recently proposed.
+- [Batch Normalization](https://arxiv.org/pdf/1502.03167.pdf) (was recently proposed)
 - [Drop Out](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
 - A New Optimization Algorithm, I came up with
-- Modifications to Batch Normalization to consider Cumulative Moving Averages of Mean and Variances rather than Exponential Moving Averages.
-all on [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html).  
+- Modifications to Batch Normalization to consider Cumulative Moving Averages of Mean and Variances rather than Exponential Moving Averages.  
+all **on [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html).**  
 This dataset has 10-classes.  
 
 ### Batch Normalizaion
@@ -27,7 +27,13 @@ So, backward propagation becomes:
 ![alt text]({{site.url}}/images/batchNorm_backward.png "batch Norm backward"){:height="200px" width="300px"}  
 
 However, during test (or validation) we simply ignore mini-batch sample mean/variance but rather using mean/variance calculated from whole data.  
-This can be done in various ways, like [I describe here](https://yogeshluthra.github.io/MeanVariance_Estimation_from_Online_Data/)
+This can be done in various ways, like [I describe here](https://yogeshluthra.github.io/MeanVariance_Estimation_from_Online_Data/)  
+
+Biggest advantage of Batch Normalization is that it makes network much less sensitive to weight initializations, as shown below. This is a huge saving in time people spend in setting correct weight initializations.  
+![alt text]({{site.url}}/images/batchNorm_advantages.png "batch Norm advantages"){:height="700px" width="500px"}  
+
+As seen above, baseline, which doesn't implement Batch Normalization, is very sensitive to weight initializations. There is a narrow window of weight initializations, where accuracy is high, otherwise bad (really bad)  
+However with Batch Normalization, there is a wide window where accuracy is reasonable and doesn't fall off as sharply.  
 
 Source code for [Batch Normalization in Python/Numpy can be found here](https://github.com/yogeshluthra/Deep_Learning/blob/master/assignment2/cs231n/layers.py)
 
@@ -68,4 +74,15 @@ All of the implemented algorithms [can be found here](https://github.com/yogeshl
 ### Results
 Now lets look at results of my experiments with Batch Normalization and New Algorithm (Nestrov_Adam) I propose.  
 ![alt text]({{site.url}}/images/results_convnet_batchNorm_optimAlgo.png "results_convnet_batchNorm_optimAlgo"){:height="500px" width="800px"}  
+
+Labels:  
+- "vanilla (adam)": Is just basic **Convolution Network** (described above) **without** any Batch Normalization layer.  
+- "BatchNorm (adam)": Is **Convolution Network** (described above) **with** Batch Normalization layers.
+- "BatchNorm (New Algo)": Is  **Convolution Network** (described above) **with** Batch Normalization layers and **Nestrov Adam** optimization algorithm (described above) and uses **[Exponential Moving Averages](https://yogeshluthra.github.io/MeanVariance_Estimation_from_Online_Data/)** for mean and variances.
+-  "BatchNorm (New Algo; estStat)": Is  **Convolution Network** (described above) **with** Batch Normalization layers and **Nestrov Adam** optimization algorithm (described above) and uses **[Cumulative Moving Averages](https://yogeshluthra.github.io/MeanVariance_Estimation_from_Online_Data/)** for mean and variances.  
+
+### Conclusions
+As can be seen in results above, just placing Batch Normalization layer in Convolutional Neural Network achives significant accuracy gains (>9%) on both training and validation sets.  
+Further Nestrov Adam algorithm achives good gains on top of Batch Normalization. On average, it achieves lower loss across all iterations, higher train and validation accuracies than most of first order optimization algorithms used in Deep Learning community.  
+ 
 
