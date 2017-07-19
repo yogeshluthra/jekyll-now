@@ -27,6 +27,10 @@ $$N_{k}=\sum_{n=1}^{N} \gamma_{nk}$$
 (Can be interpreted as Expected number of data points which belong to $$distribution_{k}$$ (or $$cluster_{k}$$)  
 
 - find
+$$\pi_{k}=\frac{N_{k}}{N}$$  
+(updated prior of the $$distribution_{k}$$ (or $$cluster_{k}$$))  
+
+- find
 $$\mu_{k}=\frac{\sum_{n=1}^{N} \gamma_{nk}.x_{n}}{N_{k}}$$  
 (weighted mean of $$distribution_{k}$$ (or $$cluster_{k}$$))
 
