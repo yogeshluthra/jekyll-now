@@ -50,7 +50,7 @@ We need to maximize $$ln(p(X | \pi,\mu,\Sigma))\ \forall k\in {1,2,...K}$$
 **w.r.t. $$\pi_k$$**  
 Note $$\sum_{k=1}^{K} \pi_k = 1$$, which can be incorporated as a constraint using Lagrangian as follows  
 $$
-L(X | \pi,\mu,\Sigma)=ln(p(X | \pi,\mu,\Sigma)) + \lambda.(\sum_{k=1}^{K} \pi_k - 1) = \sum_{n=1}^{N}  (\sum_{k=1}^{K} p(z_{k}=1) * N(x_n | \mu_{k},\Sigma_{k})) + \lambda.(\sum_{k=1}^{K} \pi\_k - 1)\\   
+L(X | \pi,\mu,\Sigma)=ln(p(X | \pi,\mu,\Sigma)) + \lambda.(\sum_{k=1}^{K} \pi_k - 1) = \sum_{n=1}^{N}  (\sum_{k=1}^{K} p(z_{k}=1) * N(x_n | \mu_{k},\Sigma_{k})) + \lambda.(\sum_{k=1}^{K} \pi_k - 1)\\   
 \frac{dL}{d\pi_{k}} = \sum_{n=1}^{N} \frac{N(x_{n} | \mu_{k},\Sigma_{k})}{\sum_{k=1}^{K} \pi_{k}.N(x_n | \mu_{k},\Sigma_{k})} + \lambda = 0\\
 \sum_{n=1}^{N} \frac{\pi_{k}.N(x_{n} | \mu_{k},\Sigma_{k})}{\sum_{k=1}^{K} \pi_{k}.N(x_n | \mu_{k},\Sigma_{k})} + \lambda.\pi_{k} = 0\\
 Using\ (3),\\
@@ -74,7 +74,7 @@ which basically is the weighted mean of Gaussian k.
 Now is the hardest part, taking derivative w.r.t. $$\Sigma$$. Since there are some non-trivial Jacobains involved, I will make use of couple of shortcuts using [The Matrix Cook Book](http://www2.imm.dtu.dk/pubdb/views/edoc_download.php/3274/pdf/imm3274.pdf)  
 $$
 \frac{dL}{d\Sigma_k} = \sum_{n=1}^{N} \frac{\pi_k.\frac{d(\frac{1}{det(2.\pi.\Sigma_k)}.e^{\frac{-(x-\mu)^T.\Sigma_k^{-1}.(x-\mu)}{2}})}{d\Sigma_k}}{\sum_{k=1}^{K} \pi_{k}.N(x_n | \mu_{k},\Sigma_k)} = 0\\
-==> \frac{\sum_{n=1}^{N} \pi_k.(\frac{-1}{2}.((det(2.\pi.\Sigma_k))^{-\frac{3}{2}}.e^{-\frac{1}{2}.(x_n-\mu_k)^T.\Sigma_k.(x_n-\mu_k)}.\frac{d(det(2.\pi.\Sigma_k))}{d\Sigma_k}\ +\ ((det(2.\pi.\Sigma_k))^{-\frac{1}{2}}.e^{-\frac{1}{2}.(x_n-\mu_k)^T.\Sigma_k.(x_n-\mu_k)}.\frac{-1}{2}.\frac{d((x-\mu)^T.\Sigma_k^{-1}.(x-\mu))}{d\Sigma_k})}{\sum_{k=1}^{K} \pi_k * N(x | \mu_{k},\Sigma_k)} = 0\\
+==> \frac{\sum_{n=1}^{N} \pi_k.(\frac{-1}{2}.((det(2.\pi.\Sigma_k))^{-\frac{3}{2}}.e^{-\frac{1}{2}.(x_n-\mu_k)^T.\Sigma_k^{-1}.(x_n-\mu_k)}.\frac{d(det(2.\pi.\Sigma_k))}{d\Sigma_k}\ +\ ((det(2.\pi.\Sigma_k))^{-\frac{1}{2}}.e^{-\frac{1}{2}.(x_n-\mu_k)^T.\Sigma_k^{-1}.(x_n-\mu_k)}.\frac{-1}{2}.\frac{d((x-\mu)^T.\Sigma_k^{-1}.(x-\mu))}{d\Sigma_k})}{\sum_{k=1}^{K} \pi_k * N(x | \mu_{k},\Sigma_k)} = 0\\
 Now,\ using\\$$
 $$\frac{d(det(2.\pi.\Sigma_k))}{d\Sigma_k} = det(2.\pi.\Sigma_k).\Sigma_k^{-1}\ using\ equation\ 49\ from\ MatrixCookBook\\
 and, \frac{d((x-\mu)^T.\Sigma_k^{-1}.(x-\mu))}{d\Sigma_k} = -\Sigma_k^{-1}.(x_n-\mu_k)(x_n-\mu_k)^T.\Sigma_k^{-1}\ using\ equation\ 61\ from\ MatrixCookBook\\
