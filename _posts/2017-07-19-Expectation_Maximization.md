@@ -43,7 +43,7 @@ $$\Sigma_{k}=\frac{\sum_{n=1}^{N} \gamma_{nk}.(x_{n}-\mu_{k})(x_{n}-\mu_{k})^T}{
 Now lets see this algorithm fitting 5-Gaussians (K=5) on a gray-scale image shown below. Size of this image=300KB  
 ![alt text]({{site.url}}/images/road.png "Road"){:height="200px" width="200px"}  
 \\
-After running EM algorithm on this image, trying to 5-Gaussians, we get following compressed image=100KB  
+After running EM algorithm on this image, trying to fit 5-Gaussians, we get following compressed image=100KB  
 (Note that actual storage size on disk < 10KB, as this image is actually stored as:  
 1. an array of 8 bit integers, each location specifying which cluster it belongs to (that is, most likely Gaussian for that data point).  
 2. And only 15 64-bit floating point numbers, with 5 for $$\pi$$, 5 for $$\mu$$, 5 for $$\sigma^2$$.)  
