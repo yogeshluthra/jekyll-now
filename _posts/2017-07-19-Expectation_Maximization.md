@@ -7,6 +7,8 @@ markdown: true
 
 Expectation Maximization is a popular generative algorithm, which elegantly handles Multi-Variate Distributions and tries to find close approximations to underlying data-generating distribution.  
 
+For fun, I derived the Multi-Variate Expectation Maximization algorithm, using Mixture of Gaussians
+
 In following I will consider a particular family of exponential distributions, the Normal Distribution, which for 1-dimensional data x:  
 $$N(x_{n} | \mu_{k}, \sigma^2_{k}) = \frac{1}{\sqrt{2.\pi.\sigma_{k}^2}} . e^\frac{-(x_{n}-\mu_{k})^2}{2.\sigma_{k}^2}$$  
 (subscripts $$n \in \{1,2,...N\}\ and\ k \in \{1,2,...K\}$$ are for N data points and K Normal Distributions which try to approximate data distribution.  
