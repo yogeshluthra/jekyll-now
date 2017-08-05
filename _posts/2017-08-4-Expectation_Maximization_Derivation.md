@@ -50,7 +50,7 @@ We need to maximize $$ln(p(X | \pi,\mu,\Sigma))\ \forall k\in {1,2,...K}$$
 **w.r.t. $$\pi_k$$**  
 Note $$\sum_{k=1}^{K} \pi_k = 1$$, which can be incorporated as a constraint using Lagrangian as follows  
 $$
-L(X | \pi,\mu,\Sigma)=ln(p(X | \pi,\mu,\Sigma)) + \lambda.(\sum_{k=1}^{K} \pi_k - 1) = \sum_{n=1}^{N}  (\sum_{k} p(z_{k}=1) * N(x_n | \mu_{k},\Sigma_{k})) + \lambda.(\sum_{k=1}*{K} \pi\_k - 1)\\   
+L(X | \pi,\mu,\Sigma)=ln(p(X | \pi,\mu,\Sigma)) + \lambda.(\sum_{k=1}^{K} \pi_k - 1) = \sum_{n=1}^{N}  (\sum_{k=1}^{K} p(z_{k}=1) * N(x_n | \mu_{k},\Sigma_{k})) + \lambda.(\sum_{k=1}^{K} \pi\_k - 1)\\   
 \frac{dL}{d\pi_{k}} = \sum_{n=1}^{N} \frac{N(x_{n} | \mu_{k},\Sigma_{k})}{\sum_{k=1}^{K} \pi_{k}.N(x_n | \mu_{k},\Sigma_{k})} + \lambda = 0\\
 \sum_{n=1}^{N} \frac{\pi_{k}.N(x_{n} | \mu_{k},\Sigma_{k})}{\sum_{k=1}^{K} \pi_{k}.N(x_n | \mu_{k},\Sigma_{k})} + \lambda.\pi_{k} = 0\\
 Using\ (3),\\
@@ -80,6 +80,6 @@ $$\frac{d(det(2.\pi.\Sigma_k))}{d\Sigma_k} = det(2.\pi.\Sigma_k).\Sigma_k^{-1}\ 
 and, \frac{d((x-\mu)^T.\Sigma_k^{-1}.(x-\mu))}{d\Sigma_k} = -\Sigma_k^{-1}.(x_n-\mu_k)(x_n-\mu_k)^T.\Sigma_k^{-1}\ using\ equation\ 61\ from\ MatrixCookBook\\
 ==> \frac{\sum_{n=1}^{N} \pi_k.N(x | \mu_k,\Sigma_k).(\frac{-1}{2}\Sigma_k^{-1}+\frac{1}{2}.\Sigma_k^{-1}.(x_n-\mu_k)(x_n-\mu_k)^T.\Sigma_k^{-1})}{\sum_{k=1}^{K} \pi_k * N(x | \mu_{k},\Sigma_k)} = 0\\
 ==> \sum_{n=1}^{N} \gamma_{nk}.(-I + (x_n-\mu_k)(x_n-\mu_k)^T.\Sigma_k^{-1}) = 0\\
-==> \Sigma_k.\sum_{n=1}^{N} \gamma_{nk} = \sum_{n=1}{N} \gamma_{nk}.(x_n-\mu_k)(x_n-\mu_k)^T \\
+==> \Sigma_k.\sum_{n=1}^{N} \gamma_{nk} = \sum_{n=1}^{N} \gamma_{nk}.(x_n-\mu_k)(x_n-\mu_k)^T \\
 ==> \Sigma_k = \frac{\sum_{n=1}^{N} \gamma_{nk}.(x_n-\mu_k)(x_n-\mu_k)^T}{\sum_{n=1}^{N} \gamma_{nk}} =  \frac{\sum_{n=1}^{N} \gamma_{nk}.(x_n-\mu_k)(x_n-\mu_k)^T}{N_k}\\
 $$

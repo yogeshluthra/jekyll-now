@@ -7,7 +7,7 @@ markdown: true
 
 Expectation Maximization is a popular generative algorithm, which elegantly handles Multi-Variate Distributions and tries to find close approximations to underlying data-generating distribution.  
 
-For fun, I derived the Multi-Variate Expectation Maximization algorithm, using Mixture of Gaussians
+For fun, I derived the Multi-Variate Expectation Maximization algorithm, using Mixture of Gaussians. [Interested readers can find it here](https://yogeshluthra.github.io/Expectation_Maximization_Derivation)
 
 In following I will consider a particular family of exponential distributions, the Normal Distribution, which for 1-dimensional data x:  
 $$N(x_{n} | \mu_{k}, \sigma^2_{k}) = \frac{1}{\sqrt{2.\pi.\sigma_{k}^2}} . e^\frac{-(x_{n}-\mu_{k})^2}{2.\sigma_{k}^2}$$  
@@ -40,7 +40,20 @@ $$\mu_{k}=\frac{\sum_{n=1}^{N} \gamma_{nk}.x_{n}}{N_{k}}$$
 $$\Sigma_{k}=\frac{\sum_{n=1}^{N} \gamma_{nk}.(x_{n}-\mu_{k})(x_{n}-\mu_{k})^T}{N_{k}}$$ ...[1]  
   \\
   \\
-  \\
+Now lets see this algorithm fitting 5-Gaussians (K=5) on a gray-scale image shown below. Size of this image=300KB  
+![alt text]({{site.url}}/images/road.png "Road"){:height="200px" width="200px"}  
+\\
+After running EM algorithm on this image, trying to 5-Gaussians, we get following compressed image=100KB  
+(Note that actual storage size on disk < 10KB, as this image is actually stored as:  
+1. an array of 8 bit integers, each location specifying which cluster it belongs to (that is, most likely Gaussian for that data point).  
+2. And only 15 64-bit floating point numbers, with 5 for $$\pi$$, 5 for $$\mu$$, 5 for $$\sigma^2$$.)  
+![alt text]({{site.url}}/images/road_best_segment.png "Road Segmented"){:height="200px" width="200px"}  
+\\
+Following is the statistical analysis of what original image distribution was, how 5-Gaussians were fitted and distribution after sub-sampling to prove that only few unique values are sufficient to describe the compressed image.  
+![alt text]({{site.url}}/images/5Gauss_fit_on_grayScale_road.png "5Gauss_fit_on_grayScale_road"){:height="800px" width="800px"}  
+\\
+As seen above, 5-Gaussians fit (Red dotted line in top half) matches closely to actual data distribution. But is of-course a smoothed approximation.  
+Bottom-half in picture above compares histogram of sub-sampled image (each pixel value replace with most likely Gaussian), and histogram of original image.  
   \\
   \\
   \\
