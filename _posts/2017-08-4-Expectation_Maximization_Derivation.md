@@ -50,7 +50,7 @@ We need to maximize $$ln(p(X | \pi,\mu,\Sigma))\ \forall k\in {1,2,...K}$$
 **w.r.t. $$\pi_k$$**  
 Note $$\sum_{k=1}^{K} \pi_k = 1$$, which can be incorporated as a constraint using Lagrangian as follows  
 $$
-L(X | \pi,\mu,\Sigma)=ln(p(X | \pi,\mu,\Sigma)) + \lambda.(\sum_{k=1}^{K} \pi_k - 1) = \sum_{n=1}^{N}  (\sum_{k=1}^{K} p(z_{k}=1) * N(x_n | \mu_{k},\Sigma_{k})) + \lambda.(\sum_{k=1}^{K} \pi_k - 1)\\   
+L(X | \pi,\mu,\Sigma)=ln(p(X | \pi,\mu,\Sigma)) + \lambda.(\sum_{k=1}^{K} \pi_k - 1) = \sum_{n=1}^{N}  ln(\sum_{k=1}^{K} p(z_{k}=1) * N(x_n | \mu_{k},\Sigma_{k})) + \lambda.(\sum_{k=1}^{K} \pi_k - 1)\\   
 \frac{dL}{d\pi_{k}} = \sum_{n=1}^{N} \frac{N(x_{n} | \mu_{k},\Sigma_{k})}{\sum_{k=1}^{K} \pi_{k}.N(x_n | \mu_{k},\Sigma_{k})} + \lambda = 0\\
 \sum_{n=1}^{N} \frac{\pi_{k}.N(x_{n} | \mu_{k},\Sigma_{k})}{\sum_{k=1}^{K} \pi_{k}.N(x_n | \mu_{k},\Sigma_{k})} + \lambda.\pi_{k} = 0\\
 Using\ (3),\\
