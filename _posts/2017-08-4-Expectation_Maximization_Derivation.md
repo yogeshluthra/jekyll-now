@@ -39,7 +39,7 @@ It is noteworthy, that there is another **assumption**, that the data points $${
 \\
 maximizing $$p(X | \pi,\mu,\Sigma)$$ is same as maximizing $$ln(p(X | \pi,\mu,\Sigma))$$  (as logarithm(x) is a monotonic function of x)  
 That is, the goal is  
-**$$maximize(ln(p(X | \pi,\mu,\Sigma))) = \sum_{n=1}^{N}  (\sum_{k} p(z_{k}=1) * N(x_n | \mu_{k},\Sigma_{k}))$$ ... (4)**  
+**$$maximize(ln(p(X | \pi,\mu,\Sigma))) = \sum_{n=1}^{N}  ln(\sum_{k} p(z_{k}=1) * N(x_n | \mu_{k},\Sigma_{k}))$$ ... (4)**  
 \\
 We have three set of variables,  
 $$\pi={\pi_1, \pi_2...\pi_K}\\
