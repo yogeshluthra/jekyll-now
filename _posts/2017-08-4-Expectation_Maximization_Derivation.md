@@ -8,7 +8,7 @@ markdown: true
 Expectation Maximization is a popular generative algorithm, which elegantly handles Multi-Variate Distributions and tries to find close approximations to underlying data-generating distribution.  
 
 In following I will consider a particular family of exponential distributions,  
-the **Normal Distribution**. (=$$N(x | \mu,\Sigma)=\frac{1}{det(2.\pi.\Sigma)}.e^{\frac{-(x-\mu)^T.\Sigma^{-1}.(x-\mu)}{2}})$$  
+the **Normal Distribution**. (=$$N(x | \mu,\Sigma)=\frac{1}{\sqrt{det(2.\pi.\Sigma)}}.e^{\frac{-(x-\mu)^T.\Sigma^{-1}.(x-\mu)}{2}})$$  
 where, $$\mu$$: is the mean and $$\Sigma$$ is the covariance matrix.  
 \\
 To fully understand the underlying assumptions behind an algorithm, it usually helps to see how it was derived. Following calculations are a bit tedious with some **Aha!** moments along the way (and I promise to highlight interesting points!) 
