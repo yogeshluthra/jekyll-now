@@ -12635,8 +12635,8 @@ y_D
 \end{bmatrix}$$
 $$ \sim\ N(0,\ \sigma_{noise}^2.I\ +\  
 \begin{bmatrix}
-X_{M}X_{M}^T & (X_{D}X_{M}^T)^T\\
-X_{D}X_{M}^T & X_{D}X_{D}^T
+K(X_{M},X_{M}) & K(X_{D},X_{M})^T\\
+K(X_{D},X_{M}) & K(X_{D},X_{D})
 \end{bmatrix})$</p>
 <p>Now, the Expected value of $y_M=E(y_M)$ (the new M predictions) based on distribution shown above (from data D seen so far):<br>
 $\mu_M = K(X_{M},X_{D}) * K(X_{D},X_{D})^{-1} * y_D$</p>
