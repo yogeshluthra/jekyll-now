@@ -11781,7 +11781,7 @@ div#notebook {
 <h1 id="Gaussian-Process-Regression:-A-non-parametric-regression-approach">Gaussian Process Regression: A non-parametric regression approach<a class="anchor-link" href="#Gaussian-Process-Regression:-A-non-parametric-regression-approach">&#182;</a></h1><h3 id="See-this-page-for-derivations">See <a href="https://github.com/yogeshluthra/Machine-Learning-CSMM102x-John-Paisley-Columbia-University-EdX/blob/master/Lecture%20Notes/Lecture10.pdf">this page</a> for derivations<a class="anchor-link" href="#See-this-page-for-derivations">&#182;</a></h3><ul>
 <li>One of the biggest <strong>advantages of Gaussian Process Regression</strong>, apart from simplicity, is that even before making a new observation y at any point x, we can predict its variance based on observations done so far.<ul>
 <li>What that means is we can avoid exploring regions in input space X, where variance is low, as we won't get much new information there.<ul>
-<li>Variance around points previously observed is lower than points not yet observed.</li>
+<li>Variance in regions of input space where some observations are already made is lower than points in regions where no observations are done.</li>
 </ul>
 </li>
 <li>This has serious <strong>advantages in various areas</strong>, like:<br>
