@@ -1,0 +1,16 @@
+### Topics
+- Bias-Variance
+  - Pictorial representation
+  - Geometric representation (2 dimensions: x-axis as Bias, y-axis as Variance)
+  - Derivations
+- Regularizations
+  - L2 and L1 from Bayesian perspective.
+    - show qqplot showing how population is more concentrated around mean for Laplace distribution than Gaussian 
+  - Compare analysis with Geometric interpretations
+  - Pick a dataset (Kaggle, UC Irvine etc)
+    - Analyze effects on bias and variance.
+- PCA top down derivation
+  - starts from assuming data is generated from a multi-variate Gaussian distribution
+  - Show eigen-face example (same as done in Piazza post on CV), probably using a different dataset
+- Share CNN project.
+- Write paper on new optimization algo (arXiv)

@@ -11775,7 +11775,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="COVFEFE">COVFEFE<a class="anchor-link" href="#COVFEFE">&#182;</a></h3><p><img src={{site.url}}/images/COVFEFE_problem.png alt="title"></p>
+<h3 id="COVFEFE">COVFEFE<a class="anchor-link" href="#COVFEFE">&#182;</a></h3><p>Mr. <strong>Trump</strong> decides to post a <em>random message on Facebook</em> and he starts typing a random sequence of letters $\{U_k\}_{k\geq1}$ such that they are chosen independently and uniformly from the 26 possible english alphabets. Find out the expected time of first appearance of the word <strong>COVFEFE</strong>.</p>
 
 </div>
 </div>
@@ -11784,21 +11784,130 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Discrete-Summation-(exact-solution)">Discrete Summation (exact solution)<a class="anchor-link" href="#Discrete-Summation-(exact-solution)">&#182;</a></h3><p>$E = \frac{7}{26^7} + \frac{25}{26^7}.(7+E) + \frac{25}{26^6}.(6+E) + \frac{25}{26^5}.(5+E) + ... $</p>
-<p>$E = 7 + 25.\Sigma_{i=1}^{7} i.26^{7-i}$</p>
+<p>This problem can be thought as an example of <strong>Markov chain</strong>.</p>
+<p>For the sequence COVFEFE,</p>
+<ul>
+<li>consider a sequence of states x, a, b, c, d, e, f<ul>
+<li>such that, state<ul>
+<li>x: starting from scratch</li>
+<li>a: starting after C</li>
+<li>b: starting after CO</li>
+<li>c: starting after COV<br>
+...so on<br>
+That is,  
+<pre><code>.  C O V F E F E  
+.  x - - - - - -  
+.    a - - - - -  
+.      b - - - -  
+.        c - - -  
+.          d - -  
+.            e -  
+.              f</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Above could be represented as a transition model of a Markov chain.
+Each edge in this model is probability of transitioning between states</p>
+
+<pre><code>.   &lt;--          &lt;-----------------------------------------------
+.  |   |        |   |        |        |        |        |        |
+.  |   |25/26   |   |1/26    |1/26    |1/26    |1/26    |1/26    |1/26   
+.  |   |        |   |        |        |        |        |        |
+.   -&gt; x -----&gt; a ---------&gt; b -----&gt; c -----&gt; d -----&gt; e -----&gt; f -----&gt; DONE    
+       |  1/26  |   1/26     |  1/26  |  1/26  |  1/26  |  1/26  |  1/26
+       |        |            |        |        |        |        |
+.      |        |24/26       |24/26   |24/26   |24/26   |24/26   |24/26
+.      |        |            |        |        |        |        |  
+.      &lt;---------------------------------------------------------</code></pre>
+<p>Looking at above, we can construct a transition table (matrix) as:</p>
+<p>$
+x = \frac{1}{26} * (1+a) + \frac{25}{26} * (1+x)  \\
+a = \frac{1}{26} * (1+a) + \frac{1}{26} * (1+b) + \frac{24}{26} * (1+x)  \\
+b = \frac{1}{26} * (1+c) + \frac{1}{26} * (1+a) + \frac{24}{26} * (1+x)  \\
+...\\
+f = \frac{1}{26}*(1) + \frac{1}{26}(1+a) + \frac{24}{26} * (1+x)\\
+$</p>
+<p>$
+\begin{bmatrix}
+x\\
+a\\
+b\\
+c\\
+d\\
+e\\
+f\\
+\end{bmatrix} =
+\frac{1}{26} *
+\begin{bmatrix}
+25 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+24 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+24 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+24 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+24 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\
+24 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+24 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix} *
+\begin{bmatrix}
+x\\
+a\\
+b\\
+c\\
+d\\
+e\\
+f\\
+\end{bmatrix} +
+\frac{1}{26} *
+\begin{bmatrix}
+25 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+24 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+24 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+24 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+24 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+24 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\
+24 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+\end{bmatrix} *
+\begin{bmatrix}
+1\\
+1\\
+1\\
+1\\
+1\\
+1\\
+1\\
+1\\
+\end{bmatrix}
+$</p>
+
+<pre><code>X =                         A.X         +             B  
+
+=&gt; (I-A).X = B</code></pre>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">E</span><span class="o">=</span><span class="mi">7</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">E</span> <span class="o">+=</span> <span class="mi">25</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="mi">26</span><span class="o">**</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="o">/</span><span class="mf">1e9</span><span class="p">,</span> <span class="s1">&#39;billions&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">26</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">A</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">26</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected length of random string of letters </span><span class="si">{0:3.5g}</span><span class="s2"> billions&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="n">I</span><span class="o">-</span><span class="n">A</span><span class="p">),</span> <span class="n">B</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">1e9</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -11815,7 +11924,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>8.353082582 billions
+<pre>Expected length of random string of letters 8.0318 billions
 </pre>
 </div>
 </div>
